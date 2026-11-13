@@ -1,0 +1,23 @@
+== similarity scores (char3-jaccard) and what each threshold would do ==
+first prompt                         second prompt                        score  t=0.5  t=0.7  t=0.85
+How do I reverse a list in Python?   how do i reverse a list in python     1.00  HIT    HIT    HIT  
+How do I reverse a list in Python?   How can I reverse a Python list?      0.60  HIT    miss   miss 
+How do I reverse a list in Python?   reverse list python                   0.49  miss   miss   miss 
+What is the capital of France?       What is the capital of Spain?         0.63  HIT    miss   miss 
+Summarize this log file              Summarise this log file               0.77  HIT    HIT    miss 
+dog bites man                        man bites dog                         0.73  HIT    HIT    miss 
+What is a car?                       What is an automobile?                0.31  miss   miss   miss 
+
+== the @cached decorator over a fake LLM, threshold 0.7 ==
+How do I reverse a list in Python?       -> answer-b510a6b3  (model called)
+how do i reverse a list in python        -> answer-b510a6b3  (served from cache)
+How do I reverse a list in Python ?!     -> answer-b510a6b3  (served from cache)
+What is the capital of France?           -> answer-1e54b09f  (model called)
+What's the capital of France?            -> answer-1e54b09f  (served from cache)
+What is the capital of Spain?            -> answer-48ac97e1  (model called)
+Explain TCP slow start                   -> answer-b647f4e2  (model called)
+explain tcp slow-start                   -> answer-b647f4e2  (served from cache)
+Explain UDP                              -> answer-4fe2ff73  (model called)
+
+fake model calls: 5 of 9 prompts
+stats: hits=4 misses=5 hit_rate=0.4444 entries=5 stores=5

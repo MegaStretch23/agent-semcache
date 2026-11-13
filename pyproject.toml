@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-semcache"
+version = "0.1.0"
+description = "A local prompt cache for LLM agents: reuse a stored answer when a new prompt is lexically close to an old one (n-gram / token similarity, SQLite, standard library only, no embeddings)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = []
+
+[project.scripts]
+agent-semcache = "agent_semcache.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
